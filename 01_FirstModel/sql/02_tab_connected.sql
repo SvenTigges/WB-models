@@ -1,5 +1,6 @@
 -- Verbundene Tabellen 
 
+-- Mastertabelle: unverändert
 CREATE TABLE IF NOT EXISTS `mydb`.`cats` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cat_name` VARCHAR(45) NOT NULL,
@@ -22,5 +23,5 @@ CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-DESCRIBE cats;
-DESCRIBE servants;
+DESCRIBE mydb.cats;
+DESCRIBE mydb.servants;
