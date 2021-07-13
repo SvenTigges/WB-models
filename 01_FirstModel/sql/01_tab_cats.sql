@@ -1,11 +1,15 @@
+-- 1. Unverbundene Tabelle
+
 CREATE TABLE IF NOT EXISTS `mydb`.`cats` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `age` INT NOT NULL,
+  `cat_name` VARCHAR(45) NOT NULL,
+  `fur_color` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
--- Inserts 
-INSERT INTO `mydb`.`cats` (`name`, `age`) VALUES ("Alonzo", 35);
-INSERT INTO `mydb`.`cats` (`name`, `age`) VALUES ("Grizabella", 29);
 
-SELECT * FROM cats; 
+CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `survant_name` VARCHAR(45) NOT NULL,
+  `yrs_served` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
