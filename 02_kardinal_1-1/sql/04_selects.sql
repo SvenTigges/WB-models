@@ -45,3 +45,18 @@ FROM mydb.cats INNER JOIN mydb.servants
 ON cats.id = servants.cats_id
 ORDER BY yrs_served DESC
 ;
+
+-- Inner Join 4 / Dienstzeit 
+-- "X - der diener von Y- ist der Diener mit der Längsten Dienstzeit" // MAX()
+SELECT
+	servant_name AS Diener,
+    yrs_served AS Dienstzeit,
+    concat(servant_name, " der diener von ", cat_name," ist der Diener mit der Längsten Dienstzeit.") AS Längste_Dienstzeit,
+    max(yrs_served) AS Längste_Dienstzeit
+FROM mydb.cats INNER JOIN mydb.servants
+ON cats.id = servants.cats_id
+;
+
+
+
+
