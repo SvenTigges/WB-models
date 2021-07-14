@@ -5,7 +5,7 @@ DROP DATABASE IF EXISTS mydb;
 CREATE DATABASE mydb;
 USE mydb;
 
--- MAstertabelle: unverändert
+-- Mastertabelle (MT): unverändert
 CREATE TABLE IF NOT EXISTS `mydb`.`cats` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cat_name` VARCHAR(45) NOT NULL,
@@ -16,23 +16,23 @@ ENGINE = InnoDB;
 -- Struktur: MT
 DESCRIBE cats;
 
--- Inserts: MT 
+-- Inserts: MT (Mastertable)
 INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Grizabella", "white");
 INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Alonzo", "grey");
 INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Mausi", "striped");
 
--- Inhalte: MT 
-SELECT * FROM cats; 
+-- Inhalte: MT
+SELECT * FROM cats;
 
--- Detailtabelle: Verbindung zur MT über Fremdschlüssel
+-- Detailtabelle (DT): Verbindung zur MT über Fremdschlüssel
 CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `survant_name` VARCHAR(45) NOT NULL,
+  `servant_name` VARCHAR(45) NOT NULL,
   `yrs_served` INT NOT NULL,
   `cats_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_servants_cats_idx` (`cats_id` ASC) VISIBLE,
-  UNIQUE INDEX `cats_id_UNIQUE` (`cats_id` ASC) VISIBLE,
+  INDEX `fk_servants_cats_idx` (`cats_id` ASC) ,
+  UNIQUE INDEX `cats_id_UNIQUE` (`cats_id` ASC) ,
   CONSTRAINT `fk_servants_cats`
     FOREIGN KEY (`cats_id`)
     REFERENCES `mydb`.`cats` (`id`)
@@ -43,10 +43,11 @@ ENGINE = InnoDB;
 -- Struktur: DT
 DESCRIBE servants;
 
--- Inhalte: DT
-INSERT INTO `mydb`.`servants` (`id`, `survant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Peter", 5, 1);
-INSERT INTO `mydb`.`servants` (`id`, `survant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Sven", 3, 2);
--- UNIQUE
-INSERT INTO `mydb`.`servants` (`id`, `survant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Jan", 4, 1);
--- Keine doppelten ids mehr möglich = UNIQUE
-INSERT INTO `mydb`.`servants` (`id`, `survant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Jan", 4, 3);
+-- Inserts: DT (Detailtable)
+INSERT INTO `mydb`.`servants` (`id`, `servant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Peter", 5, 1);
+INSERT INTO `mydb`.`servants` (`id`, `servant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Juniad", 2, 2);
+-- Das sollte eigentlich nicht gehen !! --> UNIQUE
+INSERT INTO `mydb`.`servants` (`id`, `servant_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Holger", 3, 3);
+
+-- Struktur: DT
+SELECT * FROM servants;
