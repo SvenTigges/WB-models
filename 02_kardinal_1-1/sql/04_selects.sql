@@ -36,3 +36,12 @@ ON cats.id = servants.cats_id
 #WHERE servant_name = "Juniad"
 WHERE servant_name = "Holger"
 ;
+
+-- Inner Join 3 / Dienstzeit
+SELECT
+	servant_name AS Diener,
+    yrs_served AS Dienstzeit
+FROM mydb.cats INNER JOIN mydb.servants
+ON cats.id = servants.cats_id
+ORDER BY yrs_served DESC
+;
