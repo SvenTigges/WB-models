@@ -75,4 +75,13 @@ INNER JOIN products ON products.id = purchases.products_id
 WHERE product_name LIKE "%Sauce%" OR product_name LIKE "%Lachs%"
 ;
 
+-- Wie oft wurde das Produkt X gekauft?
+SELECT 
+	product_name AS Produkt,
+    count(product_name) AS "Wie häufig wurde das Produkt gekauft"
+FROM purchases
+INNER JOIN servants ON servants.id = purchases.servants_id
+INNER JOIN products ON products.id = purchases.products_id
+GROUP BY product_name
+;
 
