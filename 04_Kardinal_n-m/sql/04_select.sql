@@ -22,7 +22,7 @@ INNER JOIN servants ON servants.id = purchases.servants_id
 INNER JOIN products ON products.id = purchases.products_id
 WHERE servants_id = 2
 ;
-/*
+
 -- Welche Artikel hat Jan gekauft?
 SELECT
 	#servant_name AS "Diener"
@@ -37,7 +37,7 @@ INNER JOIN products ON products.id = purchases.products_id
 WHERE servant_name = "Peter"
 #WHERE servants_id = 2
 ;
-*/
+
 -- Variante Christine
 SELECT
 concat	(
@@ -63,3 +63,16 @@ INNER JOIN servants ON servants.id = purchases.servants_id
 INNER JOIN products ON products.id = purchases.products_id
 WHERE servants_id = 2
 ;
+
+-- Wer hat das Produkt X gekauft? 
+-- Irgendwas mit lachs / Irgendwas mir sauce like
+SELECT 
+	servant_name AS "Diener",
+    product_name AS "Produkt mit jeweiligem Inhalt"
+FROM purchases
+INNER JOIN servants ON servants.id = purchases.servants_id
+INNER JOIN products ON products.id = purchases.products_id
+WHERE product_name LIKE "%Sauce%" OR product_name LIKE "%Lachs%"
+;
+
+
